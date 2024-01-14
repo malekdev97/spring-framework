@@ -17,6 +17,6 @@ public class GradeController {
 
         System.out.println(id);
 
-        return "index";
+        return "grades";
     }
 }
