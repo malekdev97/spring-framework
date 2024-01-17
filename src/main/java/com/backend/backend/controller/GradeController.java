@@ -5,17 +5,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 public class GradeController {
+
+    List<Grade> studentGrades = Arrays.asList(
+            new Grade("John", "Math", "A"),
+            new Grade("Smith", "English", "B"),
+            new Grade("Sam", "Science", "C"),
+            new Grade("Jack", "History", "D"),
+            new Grade("Anderson", "Geography", "E")
+    );
+
     // POJO means Plan Old Java Object
 
-    @GetMapping("/grades{id}")
-    public String getGrade(Model model, String id) {
-        Grade grade = new Grade("John", "Math", "A");
+    @GetMapping("/grades")
+    public String getGrade(Model model) {
 
-        model.addAttribute("grade", grade);
-
-        System.out.println(id);
+        model.addAttribute("grades", studentGrades);
 
         return "grades";
     }

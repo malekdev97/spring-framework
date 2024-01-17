@@ -20,8 +20,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
+                <tr th:each="grade : ${grades}">
+                    <th scope="row" th:text="${grade}"></th>
                     <td th:text="${grade.name}"></td>
                     <td th:text="${grade.subject}"></td>
                     <td th:text="${grade.score}"></td>
