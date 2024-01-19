@@ -6,6 +6,7 @@ public class Grade {
     private String score;
 
     public Grade() {
+        System.out.println("Grade constructor called!");
     }
 
     public Grade(String name, String subject, String score) {

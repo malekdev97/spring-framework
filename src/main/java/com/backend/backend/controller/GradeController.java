@@ -34,9 +34,9 @@ public class GradeController {
     }
 
     @PostMapping("/handlesubmit")
-    public String submitGrade(Grade grade) {
+    public String submitForm(Grade grade) {
 
-        System.out.println(grade.toString());
+        //System.out.println(grade.toString());
         studentGrades.add(grade);
 
         return "redirect:/grades";
