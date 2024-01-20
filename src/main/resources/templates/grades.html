@@ -24,7 +24,7 @@
                     <td th:text="${grade.name}"></td>
                     <td th:text="${grade.subject}"></td>
                     <td th:text="${grade.score}"></td>
-                    <td><a role="button">Update</a></td>
+                    <td><a class="link-success" role="button" th:href="@{/(name = ${grade.name} ) }">Update</a></td>
                 </tr>
                 </tbody>
             </table>
