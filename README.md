@@ -1,5 +1,4 @@
 # Spring Framework 
-This repo is for a udemy course for learning spring framework
+This repo is for learning purposes.
 
-The Complete Spring Boot Development Bootcamp
-
+In the future I will write step-by-step guide to get started with spring framework.
