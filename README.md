@@ -1,4 +1,4 @@
-# Spring Boot API
+# Spring Boot API - Employee Management
 This repo is for learning purposes.
 
 ### Introduction 
