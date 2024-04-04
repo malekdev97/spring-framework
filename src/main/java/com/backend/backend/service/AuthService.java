@@ -72,6 +72,7 @@ public class AuthService {
 
         if(user.getPassword().length() < 8 || user.getPassword().length() > 20) {
             throw new RuntimeException("Password must be between 8 and 20 characters");
+        }
 
         User newUser = new User();
         newUser.setUsername(user.getUsername());
@@ -85,6 +86,7 @@ public class AuthService {
         user.setRole(Collections.singletonList(role));
 
         authRepository.save(user);
+        
     }
 
     public User getByResetPasswordToken(String token) {
@@ -94,5 +96,4 @@ public class AuthService {
     public User findByUsername(String username) {
         return authRepository.findByUsername(username).get();
     }
-    
 }

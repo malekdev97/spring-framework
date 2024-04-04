@@ -14,4 +14,5 @@ public interface AuthRepository extends JpaRepository<User, Integer> {
     Boolean existsByEmail(String email);
     public User findByResetPasswordToken(String token);
     boolean existsByPhone(String phone);
+    User getByResetPasswordToken(String token);
 }
