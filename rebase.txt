@@ -1,0 +1,2 @@
+I have edit this file.
+Rebase in git is way to add commit in a leaner way.
