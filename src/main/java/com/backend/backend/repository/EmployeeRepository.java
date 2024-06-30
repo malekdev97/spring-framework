@@ -1,11 +1,10 @@
 package com.backend.backend.repository;
 
+import com.backend.backend.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.backend.backend.entity.Industry;
-
 @Repository
-public interface IndustryRepository extends JpaRepository<Industry,Long>{
-
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    
 }
