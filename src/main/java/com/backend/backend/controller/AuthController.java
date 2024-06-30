@@ -70,7 +70,7 @@ public class AuthController {
     public ResponseEntity<String> register(@Valid @RequestBody User user){
         try {
             authService.save(user);
-        }
+         }
          catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
          }
