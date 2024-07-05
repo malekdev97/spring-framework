@@ -1,7 +1,11 @@
 package com.backend.backend.service;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.stream.Collectors;
+=======
+
+>>>>>>> 6e64836 (edit servic)
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
         return productResponse;
     }
 
+<<<<<<< HEAD
 
     public List<ProductDto> findAll() {
         List<Product> products = productRepository.findAll();
@@ -62,5 +67,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     
+=======
+    @Override 
+    public List<ProductDto> getAllProducts() {
+
+        return null;
+    }
+>>>>>>> 6e64836 (edit servic)
     
 }
