@@ -34,8 +34,8 @@ public class ProductController {
 
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> findAll() {
-        List<Product> products = new ArrayList<>();
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        List<ProductDto> products = productService.getAllProducts();
 
         // products.add(new Product(1, "Employee Manager", "ERP"));
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.backend.backend.dto.ProductDto;
 import com.backend.backend.model.Product;
 import com.backend.backend.repository.ProductRepository;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,11 +35,31 @@ public class ProductServiceImpl implements ProductService {
 
         return productResponse;
     }
-
+    
     @Override 
     public List<ProductDto> getAllProducts() {
 
-        return null;
+        List<Product> products = productRepository.findAll();
+
+        return products.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
+        
+    }
+
+    private ProductDto mapToDto(Product product) {
+        ProductDto productDto = new ProductDto();
+        productDto.setId(product.getId());
+        productDto.setName(product.getName());
+        productDto.setType(product.getType());
+
+        return productDto;
+    }
+
+    private Product mapToEntity(ProductDto pDto) {
+        Product p = new Product();
+        p.setName(pDto.getName());
+        p.setType(pDto.getType());
+
+        return p;
     }
     
 }
