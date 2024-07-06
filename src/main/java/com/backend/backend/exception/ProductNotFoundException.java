@@ -1,4 +1,4 @@
-package com.backend.backend.exceptions;
+package com.backend.backend.exception;
 
 public class ProductNotFoundException extends RuntimeException {
 

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.ProductDto;
-import com.backend.backend.exceptions.ProductNotFoundException;
+import com.backend.backend.exception.ProductNotFoundException;
 import com.backend.backend.model.Product;
 import com.backend.backend.repository.ProductRepository;
 import java.util.stream.Collectors;
