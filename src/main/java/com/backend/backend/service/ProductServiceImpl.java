@@ -8,6 +8,9 @@ import com.backend.backend.dto.ProductDto;
 import com.backend.backend.exception.ProductNotFoundException;
 import com.backend.backend.model.Product;
 import com.backend.backend.repository.ProductRepository;
+
+import jakarta.validation.OverridesAttribute;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -39,12 +42,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override 
     public List<ProductDto> getAllProducts() {
-        Product p1 = productRepository.findById(99l).orElseThrow(() -> new ProductNotFoundException("Product not found!"));
+        // Product p1 = productRepository.findById(99l).orElseThrow(() -> new ProductNotFoundException("Product not found!"));
 
         List<Product> products = productRepository.findAll();
 
         return products.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
         
+    }
+
+    @Override
+    public ProductDto getProductById(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found!"));
+        
+        return mapToDto(product);
     }
 
     private ProductDto mapToDto(Product product) {
