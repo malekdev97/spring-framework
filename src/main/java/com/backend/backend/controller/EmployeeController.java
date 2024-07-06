@@ -37,9 +37,6 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
-<<<<<<< HEAD
-    
-=======
     @GetMapping("employee/{id}/detail")
     public ResponseEntity<Employee> findById(@PathVariable Long id) {
 
@@ -68,5 +65,4 @@ public class EmployeeController {
 
         return ResponseEntity.ok("Deleted successfuly");
     }
->>>>>>> 56cd40a48effb136240c442317523bd207a0984e
 }

@@ -26,16 +26,6 @@ public class EmployeeService {
         return employeeRepository.findById(id).get();
     }
 
-<<<<<<< HEAD
-    public Employee saveOrUpdate(Employee employee) {
-        return employeeRepository.save(employee);
-    }
-
-    public void deleteById(Long id) {
-        employeeRepository.deleteById(id);
-    }
-
-=======
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
@@ -63,5 +53,4 @@ public class EmployeeService {
 
        return null;
     }
->>>>>>> 56cd40a48effb136240c442317523bd207a0984e
 }
