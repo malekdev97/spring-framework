@@ -18,4 +18,17 @@ public class EmployeeService {
 
         return employeeRepository.findAll();
     }
+
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id).get();
+    }
+
+    public Employee saveOrUpdate(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public void deleteById(Long id) {
+        employeeRepository.deleteById(id);
+    }
+
 }
