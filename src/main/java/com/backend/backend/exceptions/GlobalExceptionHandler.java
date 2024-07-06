@@ -1,0 +1,22 @@
+package com.backend.backend.exceptions;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import java.util.Date;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    // intercepter the exception and return a custom response
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handlerProductNotFoundException(ProductNotFoundException exception) {
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
+        errorMessage.setMessage(exception.getMessage());    
+        errorMessage.setTimestamp(new Date());
+        
+        return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
+    }
+}
