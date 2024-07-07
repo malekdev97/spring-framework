@@ -7,7 +7,10 @@ public interface ProductService {
     
     ProductDto createProduct(ProductDto product);
 
-    List<ProductDto> getAllProducts();
+    // page number is in the url
+    // page size which mean how many item idsplay in one page
+    
+    List<ProductDto> getAllProducts(int pageNo, int pageSize);
 
     ProductDto getProductById(Long id);
 

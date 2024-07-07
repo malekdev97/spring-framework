@@ -2,12 +2,16 @@ package com.backend.backend.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.ProductDto;
 import com.backend.backend.exception.ProductNotFoundException;
 import com.backend.backend.model.Product;
 import com.backend.backend.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import jakarta.validation.OverridesAttribute;
 
@@ -36,17 +40,18 @@ public class ProductServiceImpl implements ProductService {
         productResponse.setId(newProduct.getId());
         productResponse.setName(newProduct.getName());
         productResponse.setType(newProduct.getType());
-
+ 
         return productResponse;
     }
 
     @Override 
-    public List<ProductDto> getAllProducts() {
+    public List<ProductDto> getAllProducts(int pageNo, int pageSize) {
         // Product p1 = productRepository.findById(99l).orElseThrow(() -> new ProductNotFoundException("Product not found!"));
 
-        List<Product> products = productRepository.findAll();
-
-        return products.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
+        PageRequest pageable = PageRequest.of(pageNo, pageSize);
+        Page<Product> products = productRepository.findAll(pageable);
+        List<Product> listOfProducts = products.getContent();
+        return listOfProducts.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
         
     }
 
