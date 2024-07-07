@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import com.backend.backend.dto.ProductDto;
+import com.backend.backend.dto.ProductResponse;
 import com.backend.backend.model.Product;
 import com.backend.backend.service.ProductService;
 
@@ -35,11 +36,11 @@ public class ProductController {
 
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductDto>> getAllProducts(
+    public ResponseEntity<ProductResponse> getAllProducts(
         @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
         @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
     ) {
-        List<ProductDto> products = productService.getAllProducts(pageNo, pageSize);
+        var products = productService.getAllProducts(pageNo, pageSize);
                 
         // products.add(new Product(1, "Employee Manager", "ERP"));
 

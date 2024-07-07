@@ -7,6 +7,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.ProductDto;
+import com.backend.backend.dto.ProductResponse;
 import com.backend.backend.exception.ProductNotFoundException;
 import com.backend.backend.model.Product;
 import com.backend.backend.repository.ProductRepository;
@@ -45,13 +46,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override 
-    public List<ProductDto> getAllProducts(int pageNo, int pageSize) {
+    public ProductResponse getAllProducts(int pageNo, int pageSize) {
         // Product p1 = productRepository.findById(99l).orElseThrow(() -> new ProductNotFoundException("Product not found!"));
 
         PageRequest pageable = PageRequest.of(pageNo, pageSize);
         Page<Product> products = productRepository.findAll(pageable);
         List<Product> listOfProducts = products.getContent();
-        return listOfProducts.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
+        List<ProductDto> content = listOfProducts.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
+
+        ProductResponse productResponse = new ProductResponse();
+        productResponse.setContent(content);
+        productResponse.setPageNo(products.getNumber());
+        productResponse.setPageSize(products.getSize());
+        productResponse.setTotalElements(products.getTotalElements());
+        productResponse.setTotalPages(products.getTotalPages());
+        productResponse.setLast(products.isLast());
+
+        return productResponse;
         
     }
 
