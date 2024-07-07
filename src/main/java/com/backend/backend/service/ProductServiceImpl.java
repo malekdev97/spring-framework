@@ -70,6 +70,12 @@ public class ProductServiceImpl implements ProductService {
         return mapToDto(updatedProduct);
     }
 
+    public void deleteProduct(Long id) {
+
+        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Can not delete"));
+        productRepository.delete(product);
+    }
+
     private ProductDto mapToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
