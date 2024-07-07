@@ -41,6 +41,9 @@ public class ProductServiceImpl implements ProductService {
         productResponse.setId(newProduct.getId());
         productResponse.setName(newProduct.getName());
         productResponse.setType(newProduct.getType());
+
+        // Query 
+        
  
         return productResponse;
     }
