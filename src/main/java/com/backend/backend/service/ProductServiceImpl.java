@@ -57,6 +57,19 @@ public class ProductServiceImpl implements ProductService {
         return mapToDto(product);
     }
 
+    @Override
+    public ProductDto updateProduct(Long id, ProductDto newProduct) {
+
+        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found!"));
+        
+        product.setName(newProduct.getName());
+        product.setType(newProduct.getType());
+
+        Product updatedProduct = productRepository.save(product);
+        
+        return mapToDto(updatedProduct);
+    }
+
     private ProductDto mapToDto(Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
