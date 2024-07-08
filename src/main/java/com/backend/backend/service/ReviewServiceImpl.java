@@ -2,6 +2,7 @@ package com.backend.backend.service;
 
 import java.util.List;
 
+import org.hibernate.annotations.DialectOverride.OverridesAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -77,6 +78,36 @@ public class ReviewServiceImpl implements ReviewService {
             else {
                 return mapToDto(review);
         }
+    }
+
+    @Override
+    public ReviewDto updateReview(Long reviewId, Long productId, ReviewDto reviewDto) {
+
+        // check if product & review exist
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException("Product does not exist!"));
+        
+        Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new ReviewNotFoundException("Review does not exist!"));
+
+        if(!review.getProduct().getId().equals(product.getId())) {
+            throw new ReviewNotFoundException("Review not Found!!");
+        }
+            else {
+                review.setTitle(reviewDto.getTitle());
+                review.setContent(reviewDto.getContent());
+                review.setRate(reviewDto.getRate());
+
+                Review updateReview = reviewRepository.save(review); // save method is detecte if the entity is new create if not update
+
+                return mapToDto(updateReview);
+        }
+
+        
+
+    }
+
+    @Override
+    public void deleteReview(Long reviewId, Long productId) {
+
     }
     
 }

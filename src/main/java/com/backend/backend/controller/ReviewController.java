@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.backend.backend.dto.ReviewDto;
@@ -36,5 +37,10 @@ public class ReviewController {
     @GetMapping("/product/{pId}/reviews/{rId}")
     public ResponseEntity<ReviewDto> getReviewById(@PathVariable(value = "pId") Long pId, @PathVariable(value = "rId") Long rId) {
         return ResponseEntity.ok(reviewService.getReviewById(pId, rId));
+    }
+
+    @PutMapping("/product/{pId}/reviews/{rId}/update")
+    public ResponseEntity<ReviewDto> updateReview(@PathVariable Long pId, @PathVariable Long rId, @RequestBody ReviewDto reviewDto) {
+        return ResponseEntity.ok(reviewService.updateReview(pId, rId, reviewDto));
     }
 }
