@@ -30,6 +30,11 @@ public class ReviewController {
 
     @PostMapping("/product/{pId}/reviews/create")
     public ResponseEntity<ReviewDto> createReview(@PathVariable Long pId, @RequestBody ReviewDto reviewDto) {
-        return ResponseEntity.ok(reviewDto);
+        return ResponseEntity.ok(reviewService.createReview(pId, reviewDto));
+    }
+
+    @GetMapping("/product/{pId}/reviews/{rId}")
+    public ResponseEntity<ReviewDto> getReviewById(@PathVariable(value = "pId") Long pId, @PathVariable(value = "rId") Long rId) {
+        return ResponseEntity.ok(reviewService.getReviewById(pId, rId));
     }
 }

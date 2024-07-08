@@ -6,5 +6,8 @@ import java.util.List;
 public interface ReviewService {
     
     ReviewDto createReview(Long productId, ReviewDto reviewDto);
-    List<ReviewDto> getReviewByProductId(Long id);
+    List<ReviewDto> getReviewByProductId(Long id);    
+    ReviewDto getReviewById(Long reviewId, Long productId);
+    ReviewDto updateReview(Long reviewId, Long productId);
+    void deleteReview(Long reviewId, Long productId);
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.ReviewDto;
 import com.backend.backend.exception.ProductNotFoundException;
+import com.backend.backend.exception.ReviewNotFoundException;
 import com.backend.backend.model.Product;
 import com.backend.backend.model.Review;
 import com.backend.backend.repository.ProductRepository;
@@ -62,6 +63,20 @@ public class ReviewServiceImpl implements ReviewService {
         review.setContent(reviewDto.getContent());
         review.setRate(reviewDto.getRate());
         return review;
+    }
+
+    @Override
+    public ReviewDto getReviewById(Long reviewId, Long productId) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException("Product does not exist!"));
+
+        Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new ReviewNotFoundException("Review does not exist!"));
+
+        if(!review.getProduct().getId().equals(product.getId())) {
+            throw new ReviewNotFoundException("Review not Found!!");
+        }
+            else {
+                return mapToDto(review);
+        }
     }
     
 }
