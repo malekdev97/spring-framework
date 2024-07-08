@@ -107,6 +107,17 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public void deleteReview(Long reviewId, Long productId) {
+        // check if product & review exist
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException("Product does not exist!"));
+            
+        Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new ReviewNotFoundException("Review does not exist!"));
+
+        if(!review.getProduct().getId().equals(product.getId())) {
+            throw new ReviewNotFoundException("Review not Found!!");
+        }
+            else {
+                reviewRepository.delete(review);
+        }
 
     }
     
