@@ -3,6 +3,7 @@ package com.backend.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.ReviewDto;
 import com.backend.backend.exception.ProductNotFoundException;
@@ -11,7 +12,9 @@ import com.backend.backend.model.Review;
 import com.backend.backend.repository.ProductRepository;
 import com.backend.backend.repository.ReviewRepository;
 import com.backend.backend.service.*;
+import java.util.stream.Collectors;
 
+@Service
 public class ReviewServiceImpl implements ReviewService {
 
     private ProductRepository productRepository;
@@ -37,9 +40,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewDto> getReviewByProductId(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getReviewByProductId'");
+    public List<ReviewDto> getReviewByProductId(Long id) {
+        List<Review> reviews = reviewRepository.findByProductId(id);
+
+        return reviews.stream().map(review -> mapToDto(review)).collect((Collectors.toList()));
     }
 
     private ReviewDto mapToDto(Review review) {

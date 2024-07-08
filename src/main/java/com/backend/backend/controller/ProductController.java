@@ -19,7 +19,6 @@ import org.springframework.http.HttpStatus;
 
 import com.backend.backend.dto.ProductDto;
 import com.backend.backend.dto.ProductResponse;
-import com.backend.backend.model.Product;
 import com.backend.backend.service.ProductService;
 
 @RestController
