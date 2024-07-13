@@ -1,11 +1,15 @@
 package com.backend.backend.model;
 
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,5 +32,9 @@ public class Employee {
     @Email
     @Column(name = "email")
     private String email;
+
+    @ManyToMany
+    @JoinTable(name = "employee_department")
+    List<Department> departments;
     
 }
