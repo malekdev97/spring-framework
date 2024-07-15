@@ -29,4 +29,14 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(DepartmentNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handlerReviewNotFoundException(DepartmentNotFoundException exception) {
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setStatusCode(HttpStatus.NOT_FOUND.value());
+        errorMessage.setMessage(exception.getMessage());
+        errorMessage.setTimestamp(new Date());
+
+        return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
+    }
 }
