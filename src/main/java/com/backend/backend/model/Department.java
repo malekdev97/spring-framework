@@ -29,6 +29,5 @@ public class Department {
 
     // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Employee> employees;
+    
 }
