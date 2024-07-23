@@ -10,4 +10,5 @@ public interface ReviewService {
     ReviewDto getReviewById(Long reviewId, Long productId);
     ReviewDto updateReview(Long reviewId, Long productId, ReviewDto reviewDto);
     void deleteReview(Long reviewId, Long productId);
+    void test();
 }
