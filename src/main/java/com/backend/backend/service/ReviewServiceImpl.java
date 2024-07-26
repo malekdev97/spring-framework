@@ -120,5 +120,11 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
     }
+
+    @Override
+    public void test() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'test'");
+    }
     
 }
