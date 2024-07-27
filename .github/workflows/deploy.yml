@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: backend
-          path: backend-${{ github.sha }}.jar
+          path: backend-${{ github.sha }}.jar
 
   deploy:
     runs-on: self-hosted
