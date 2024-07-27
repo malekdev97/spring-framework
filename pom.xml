@@ -95,8 +95,19 @@
 			<version>1.14.6</version>
 		</dependency>
 
+		<!-- Unit Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- In Memory Database for testing -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-<!--f8fe31d3ff75a0c8060ef9e0339dff993d788a1a-->
 	</dependencies>
 
 	<build>
