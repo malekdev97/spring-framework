@@ -1,7 +1,10 @@
 package com.backend.backend.controllers;
 
+import com.backend.backend.config.RabbitMQConfig;
 import com.backend.backend.entities.ItemEntity;
 import com.backend.backend.services.ItemService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
 
     private final ItemService itemService;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
@@ -27,7 +32,12 @@ public class ItemController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createItem(ItemEntity itemEntity) {
-        return ResponseEntity.ok(itemService.save(itemEntity));
+        ResponseEntity<?> response =  ResponseEntity.ok(itemService.save(itemEntity));
+        rabbitTemplate.convertAndSend(
+                RabbitMQConfig.EXCHANGE,
+                RabbitMQConfig.ROUTING_KEY,
+                "New item created: " + itemEntity.toString());
+        return response;
     }
 
     @DeleteMapping("/delete/{id}")
