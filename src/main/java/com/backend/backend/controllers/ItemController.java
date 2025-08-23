@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/items")
 @RestController
+@RequestMapping("/api/items")
 public class ItemController {
 
     @Autowired
@@ -17,6 +17,9 @@ public class ItemController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAllItems() {
