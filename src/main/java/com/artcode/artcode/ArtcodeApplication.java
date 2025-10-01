@@ -11,6 +11,7 @@ public class ArtcodeApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(ArtcodeApplication.class, args);
 
 		context.getBean("HeavyResource");
+		context.getBean("HeavyResource");
 	}
 
 }
