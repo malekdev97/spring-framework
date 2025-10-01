@@ -9,6 +9,8 @@ public class ArtcodeApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ArtcodeApplication.class, args);
+
+		context.getBean("HeavyResource");
 	}
 
 }
